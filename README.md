@@ -53,6 +53,10 @@ WebAssembly 虚拟机之一。
 中等 ~ 高
 等
 
+### License
+
+* [GPL-2.0](https://opensource.org/licenses/GPL-2.0)
+
 
 ### 项目导师
 李栋 lidong@ict.ac.cn
