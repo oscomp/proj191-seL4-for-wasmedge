@@ -2,18 +2,9 @@
  seL4 作为Hypervisor启动一个 WasmEdge 运行时环境
 
 
+### 项目描述
 
-任务书
-
-### 中国科学院计算技术研究所
-
-
-
-# — 任务介绍
-
-
-
-1. ## seL4 **与微内核**
+#### seL4 **与微内核**
 
    
 
@@ -31,7 +22,7 @@
 
    
 
-2. ## WebAssembly **与** WasmEdge
+#### WebAssembly 与 WasmEdge
 
 
 
@@ -46,58 +37,69 @@ WasmEdge 是一个轻量级、高性能、可扩展的 WebAssembly 运行时环�
 WebAssembly 虚拟机之一。
 
 
+   
+### 所属赛道
 
-# 二 最终目标
+2022全国大学生操作系统比赛的“OS功能挑战”赛道
 
-## seL4 As Hypervisor For WasmEdge
+### 参赛要求
+
+- 以小组为单位参赛，最多三人一个小组，且小组成员是来自同一所高校的本科生（2022年春季学期或之后本科毕业的大一~大四的学生）或研究生
+- 如学生参加了多个项目，参赛学生选择一个自己参加的项目参与评奖
+- 请遵循“2022国大学生操作系统比赛”的章程和技术方案要求
+
+### 难度
+
+中等 ~ 高
+等
+
+
+### 项目导师
+李栋 lidong@ict.ac.cn
 
 
 
-1. 目标
 
+### 功能描述
+#### seL4 As Hypervisor For WasmEdge
    
 
-   ![image](seL4研发任务书_files/Image_001.jpg)
+![image](files/Image_001.jpg)
 
-   图 2-1 seL4 As Hypervisor For WasmEdge
+图  seL4 As Hypervisor For WasmEdge
 
-   如图 1 所示，我们最终实现的目标是，在已知的硬件开发板上（树莓派、Jetson 系列）运行 seL4 微内核，并且将 seL4 作为 Hypervisor，在其上层启动一个（或多个）传统虚拟机与操作系统（如 Linux）以及一个 WasmEdge 运行时环境，各个环境互相隔离或通过可验证的方式通信，同时各个环境运行独立的 Tasks。
+如上图所示，我们最终实现的目标是，在已知的硬件开发板上（树莓派、Jetson 系列）运行 seL4 微内核，并且将 seL4 作为 Hypervisor，在其上层启动一个（或多个）传统虚拟机与操作系统（如 Linux）以及一个 WasmEdge 运行时环境，各个环境互相隔离或通过可验证的方式通信，同时各个环境运行独立的 Tasks。
+
+
+#### 具体要求
 
    
+我们需要对该 seL4 As Hypervisor For WasmEdge 方案进行以下几个维度的评估：
 
-2. 要求
-
-   
-
-   我们需要对该 seL4 As Hypervisor For WasmEdge 方案进行以下几个维度的评估：
-
-   1. 执行速度：对比包括但不限于传统的虚拟化方案（Xen、KVM）、沙箱方案（docker、 container）。
-
-   2. 安全性：采用形式化验证的方法对其安全性进行验证。
-
-   3. 实时性：用户的响应时间。
-
-   4. 稳定性：应用的稳定性。
+1. 执行速度：对比包括但不限于传统的虚拟化方案（Xen、KVM）、沙箱方案（docker、 container）。
+2. 安全性：采用形式化验证的方法对其安全性进行验证。
+3. 实时性：用户的响应时间。
+4. 稳定性：应用的稳定性。
 
       
 
-      # 三 工作内容
+#### 技术储备
+为了研究 seL4 源码及其运行机制，需要开发者具备扎实的计算机体系结构知识，尤其是对操作系统、计算机组成原理、编译原理、C 语言要求较高，尤其是前两者。
 
-      为了研究 seL4 源码及其运行机制，需要开发者具备扎实的计算机体系结构知识，尤其是对操作系统、计算机组成原理、编译原理、C 语言要求较高，尤其是前两者。
+为了使 seL4 达到对 WasmEdge 的支持，需要对 Wasm 有一定的认识，要有汇编语言的基础，同时需要掌握一门或多门编程语言如 Rust、C/C++、Go、Javascript 等函数式编程语言。另外，为了能够将 WasmEdge 的接口暴露给 seL4，需要开发者具备良好的接口设计技巧与编程范式。
 
-      为了使 seL4 达到对 WasmEdge 的支持，需要对 Wasm 有一定的认识，要有汇编语言的基础，同时需要掌握一门或多门编程语言如 Rust、C/C++、Go、Javascript 等函数式编程语言。另外，为了能够将 WasmEdge 的接口暴露给 seL4，需要开发者具备良好的接口设计技巧与编程范式。
+#### 具体内容
 
-      根据方案涉及到的技术点，工作内容如下：
+根据方案涉及到的技术点，工作内容如下：
 
-      1、 基于 seL4 项目，对选型的 arm 开发板移植 seL4+WasmEdge。 2、 利用形式化验证方法，对研发出的框架进行测试与验证。
-
+1. 基于 seL4 项目，对选型的 arm 开发板移植 seL4+WasmEdge。 
+2. 利用形式化验证方法，对研发出的框架进行测试与验证。
       
 
-      # 四 时间规划
+#### 时间初步规划
 
       
-
-      表 4-1 研发任务的初步时间规划
+表 4-1 研发任务的初步规划
 
       
 
@@ -117,9 +119,9 @@ WebAssembly 虚拟机之一。
 
       
 
-      参见上表，是对该项目的初步时间安排（按月份）：
+参见上表，是对该项目的初步时间安排（按月份）：
 
-      1、 第一个月：【入门】
+ 1、 第一个月：【入门】
 
       1. 确定硬件选型：建议参考官方团队已经支持的部分开发板，并在网络上进行购买，参见[ ](https://docs.sel4.systems/Hardware/)https://docs.sel4.systems/Hardware/
       2. 熟悉 seL4 的运行机制，包括其外围众多基于 seL4 的 project [（ 参见 ](https://docs.sel4.systems/projects/)[https://docs.sel4.systems/projects](https://docs.sel4.systems/projects/)/，重要的项目：seL4test, Camkes, camkes-arm- vmm, tutorials[），建议一定要把官方教程（](https://docs.sel4.systems/Tutorials/)[https://docs.sel4.systems/Tutorials](https://docs.sel4.systems/Tutorials/)/ ）操作一遍。
@@ -147,17 +149,17 @@ a) 对框架在开发板上进行测试与工程实践。
 
 
 
-# 五 当前进展
+### 前进展
 
 经过初步的了解与实践，当前的实践成果与进展如下：
 
-1、 在 Raspberry 4B 8GB 上移植了 seL4test； 2、 在 Nvidia Jetson TX1 上移植了 seL4test；
+1. 在 Raspberry 4B 8GB 上移植了 seL4test； 
+2. 在 Nvidia Jetson TX1 上移植了 seL4test；
+3. 在 Nvidia Jetson TX1 上移植了 camkes-arm-vmm;
 
-3、 在 Nvidia Jetson TX1 上移植了 camkes-arm-vmm;
 
 
-
-# 六 参考文档
+### 参考文档
 
 1. seL4 主页.[ ](https://sel4.systems/)https://sel4.systems/
 2. seL4 及相关 github 仓库.[ ](https://github.com/seL4)https://github.com/seL4
